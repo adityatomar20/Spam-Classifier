@@ -1,13 +1,45 @@
-## Spam-Detection
+### The goal of this project is to develop a spam detection classification model that can accurately distinguish between spam and non-spam messages. The model will be evaluated using two metrics: accuracy and a custom-defined misclassification cost.
 
-- The goal of this project is to develop a spam detection classification model that can accurately distinguish between spam and non-spam messages. The model will be evaluated using two metrics: accuracy and a custom-defined misclassification cost.
+### Data Import and Exploration:
+Data is loaded from a file (presumably a CSV file) using pandas.
+The dataset contains various features related to email characteristics, including word frequencies, character frequencies, and capital run lengths.
+Descriptive statistics are calculated using df.describe() to get an overview of the dataset.
+The target variable 'spam_or_not' has two classes: 0 (non-spam) and 1 (spam).
+No missing values are present in the dataset (df.isna().sum()).
 
-- To begin, a dataset of messages will be used to train and test the models. This dataset will be split into two parts: a training set and a testing set. The training set will be used to train the model, while the testing set will be used to evaluate the model's performance.
+### Data Preparation:
+The dataset is split into input variables (X) and the target variable (y).
+The data is further divided into training and testing sets using train_test_split.
+Standard scaling is applied to normalize the data.
 
-- The first metric used to evaluate the models will be accuracy. This measures how well the model can correctly identify spam and non-spam messages. The higher the accuracy, the better the model performs.
+### Model Building:
+Several machine learning models are considered:
 
-- The second metric used to evaluate the models will be a custom-defined misclassification cost. This metric takes into account the cost of misclassifying a message as spam or non-spam. For example, misclassifying a non-spam message as spam could result in the user missing important information, while misclassifying a spam message as non-spam could result in the user receiving unwanted messages. Therefore, a cost will be assigned to each type of misclassification, and the model's performance will be evaluated based on its ability to minimize the overall misclassification cost.
+Decision Tree
+Logistic Regression
+K-Nearest Neighbors (KNN)
+Support Vector Machine (SVM) Classifier
+Random Forest Classifier
+XGBoost Classifier
+Simple Neural Network (NN)
 
-- After training and testing each model, the results will be compared based on both accuracy and misclassification cost. The model with the highest accuracy and lowest misclassification cost will be selected as the best model for spam detection.
+### Model Evaluation - Accuracy:
+Models are evaluated using nested cross-validation with the primary metric being accuracy.
+Hyperparameter tuning is performed for each model using grid search.
 
-- Finally, to ensure the validity of the results, the selected model will be tested on a separate dataset to confirm its performance. If the model performs well on the new dataset, it can be considered a reliable and accurate spam detection model.
+### Model Evaluation - Misclassification Cost:
+A custom misclassification cost function is defined.
+Models are evaluated using nested cross-validation with the misclassification cost as the primary metric.
+Best Model Selection:
+The best model based on accuracy and misclassification cost is determined for each metric.
+Hyperparameter tuning is performed for the selected best model.
+
+### Evaluation Metrics:
+Evaluation metrics such as precision, recall, accuracy, F1-score, ROC curve, AUC, precision-recall curve, and cumulative gain curve are calculated and visualized.
+
+### Summary of Results:
+Ensemble models (Random Forest and Light GBM Classifier) perform well in terms of accuracy and misclassification cost.
+Hyperparameter tuning is performed to find the optimal parameters for the best model.
+Conclusion:
+The Random Forest Classifier is selected as the final model based on misclassification cost.
+The model is trained with the best parameters and evaluated on the test set.
